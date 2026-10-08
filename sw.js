@@ -1,5 +1,5 @@
 const CACHE='dictionnaire-zone1-nombres-v2';
-const CORE=['./','./index.html','./dictionnaire-zone-1-nombres.html','./data/zone-1-nombres.json'];
+const CORE=['./','./index.html','./dictionnaire-selon-malachie-4.html','./data/zone-1-nombres.json'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key==='malachie4-zone1-v1'||(key.startsWith('dictionnaire-zone1-')&&key!==CACHE)).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{

@@ -5,6 +5,7 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 data = json.loads((ROOT / "data/zone-1-nombres.json").read_text(encoding="utf-8"))
+data = {key: data[key] for key in ("sourceApp", "entrees", "mentionsSansDefinition")}
 data_js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
 html = r'''<!doctype html>
@@ -13,8 +14,8 @@ html = r'''<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f1e8">
-  <meta name="description" content="Dictionnaire numérique fondé sur des définitions explicites dans les brochures — zone 1.">
-  <title>Les nombres — Dictionnaire des brochures, zone 1</title>
+  <meta name="description" content="Définitions et interprétations sourcées — Dictionnaire selon Malachie 4.">
+  <title>Dictionnaire selon Malachie 4</title>
   <style>
     :root{color-scheme:light;--paper:#f6f1e8;--card:#fffdf8;--ink:#22221f;--muted:#68685f;--line:#d6d1c5;--accent:#773e2c;--accent-bg:#f0e3d8;--gold:#a47a31;--green:#42614a}
     *{box-sizing:border-box;animation:none!important;transition:none!important}
@@ -70,23 +71,21 @@ html = r'''<!doctype html>
 <body>
 <main>
   <header>
-    <div class="eyebrow">Dictionnaire des brochures · Zone 1 · Étape 1</div>
-    <h1>Les nombres</h1>
-    <p class="intro">Les significations sont regroupées par nombre. Ouvrez une fiche pour voir toutes les définitions relevées et leurs passages sources. Le fichier est autonome : enregistrez-le et consultez-le hors ligne.</p>
+    <h1>Dictionnaire selon Malachie 4</h1>
+    <p class="intro">Les fiches donnent directement les sens relevés et leurs références vérifiées. L’inventaire des autres passages s’enrichit au fil de la lecture complète du corpus. Téléchargez ce fichier autonome pour le consulter hors ligne.</p>
     <div class="head-actions">
-      <a class="button" href="./dictionnaire-zone-1-nombres.html" download>Télécharger le HTML</a>
+      <a class="button" href="./dictionnaire-selon-malachie-4.html" download>Télécharger le HTML</a>
       <a class="button secondary" id="source-app" href="#">Ouvrir l’application Bible</a>
     </div>
   </header>
   <div class="toolbar">
-    <input id="search" type="search" placeholder="Rechercher un nombre, une définition ou un passage…" aria-label="Rechercher dans le dictionnaire">
+    <input id="search" type="search" placeholder="Rechercher un mot, un nombre, un symbole ou un passage…" aria-label="Rechercher dans le dictionnaire">
     <span class="count" id="count" aria-live="polite"></span>
   </div>
-  <h2 class="group-title">Définitions explicites</h2>
+  <h2 class="group-title">Entrées du dictionnaire</h2>
   <section id="entries" aria-label="Nombres définis"></section>
   <section class="unassigned" id="unassigned" aria-label="Nombres cités sans définition"></section>
-  <aside class="method"><strong>Règle de transcription.</strong> Une définition n’est retenue que lorsque le passage attribue explicitement un sens au nombre. Les références ouvrent la brochure et le paragraphe concernés; le passage source est mis en évidence. Les nombres seulement énumérés sont séparés afin de ne pas leur attribuer un sens absent du texte.</aside>
-  <footer>Première livraison : nombres repérés dans les brochures de la zone 1. Les autres nombres seront ajoutés lorsqu’une définition explicite sera attestée dans cette zone.</footer>
+  <aside class="method"><strong>Règle de transcription.</strong> Chaque sens doit être attesté par le texte source; une simple occurrence ne suffit pas. Les définitions distinctes restent séparées. Les références affichées ouvrent le paragraphe vérifié et en mettent le passage en évidence; les passages candidats ne deviennent des fiches qu’après contrôle.</aside>
 </main>
 <script>
 const DATA = __DATA__;
@@ -108,5 +107,5 @@ if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventList
 '''.replace("__DATA__", data_js)
 
 (ROOT / "index.html").write_text(html, encoding="utf-8")
-(ROOT / "dictionnaire-zone-1-nombres.html").write_text(html, encoding="utf-8")
-print("Generated index.html and dictionnaire-zone-1-nombres.html", len(html), "bytes")
+(ROOT / "dictionnaire-selon-malachie-4.html").write_text(html, encoding="utf-8")
+print("Generated index.html and dictionnaire-selon-malachie-4.html", len(html), "bytes")

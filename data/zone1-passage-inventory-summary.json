@@ -1,0 +1,16 @@
+{
+  "source": "/home/ubuntu/work/brochure-app/data/brochures_z1.json.gz",
+  "documents_examines": 382,
+  "paragraphes_examines": 81237,
+  "paragraphes_candidats_uniques": 2374,
+  "candidats_par_famille": {
+    "animaux": 252,
+    "mots_noms": 254,
+    "nombres": 669,
+    "paraboles": 117,
+    "phrases_adages": 165,
+    "symboles": 1465,
+    "types_antitypes": 436
+  },
+  "statut": "Candidats automatiques uniquement; aucun candidat ne devient une définition sans vérification source."
+}
