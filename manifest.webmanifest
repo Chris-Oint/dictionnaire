@@ -1,0 +1,10 @@
+{
+  "name": "Malachie 4 — Dictionnaire",
+  "short_name": "Malachie 4",
+  "lang": "fr",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#efe7db",
+  "background_color": "#f8f4ed",
+  "description": "Dictionnaire offline de William Branham — zone 1"
+}
